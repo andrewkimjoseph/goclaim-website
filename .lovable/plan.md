@@ -1,60 +1,51 @@
 
-## Goal
+## Problem
 
-Build a static 3-page marketing site for GoClaim that visually matches the live dapp at app.goclaim.xyz (brutalist style, green shell, watermelon logo). All primary CTAs link out to the dapp. No wallet, no backend, no dashboard.
+The `.app-shell` is capped at `max-w-[460px]` (mobile) / `max-w-2xl` (md+) and centered, so on tablet/desktop the body's default white background shows on the left and right of the green column.
 
-## Pages
+## Fix the white sides (all breakpoints)
 
-- `/` — Hero with logo, headline "Your UBI, on autopilot.", subhead, two CTAs (Get started → app.goclaim.xyz, Read FAQs → /faqs), and a "How it works" 3-step section.
-- `/faqs` — Intro + 8-item `<details>` accordion (verbatim copy from spec) + bottom "Get started" CTA.
-- `/about` — Intro + 5 white card sections (What is GoClaim?, Who is it for?, How it works (reused step layout), Your wallet stays yours, Built with) + "Open GoClaim" CTA.
+Paint the page background green so nothing white ever shows behind the shell:
+- Set `body { background-color: var(--color-shell); }` in `src/styles.css`.
+- Keep `.app-shell` as the centered content column (now seamless against the body).
 
-## Design system
+## Per-breakpoint layouts
 
-Add tokens to `src/styles.css` via `@theme`:
-- Colors: `shell #085020`, `primary #F83028`, `accent #80B040`, `foreground #000`, `background #fff`
-- Radius: `--radius-brutal: 2px`
-- Shadows registered as utilities: `shadow-brutal` (`4px 4px 0 0 #000`), `shadow-brutal-sm` (`3px 3px 0 0 #000`)
-- Fonts: Bricolage Grotesque (display) + Hanken Grotesk (body), loaded via `<link>` tags in `src/routes/__root.tsx` (per Tailwind v4 rule — no URL `@import` in CSS). Expose as `--font-display` and `--font-sans`.
-- `theme-color` meta `#085020` set in root head.
+Mobile stays exactly as it is today. Tablet and desktop get genuinely different compositions instead of just a wider mobile column.
 
-Component classes defined as `@utility` in `src/styles.css`: `.app-shell`, `.header-bar`, `.section-label-inverse`, `.btn-hero-primary`, `.btn-hero-tertiary`, `.card`, `.step-badge` — matching the CSS provided in the spec.
+### Mobile (< 768px) — unchanged
+- Single column, `max-w-[460px]`, stacked CTAs, vertical step cards, vertical FAQ list.
 
-## Assets
+### Tablet (768–1023px)
+- Content column widens to `max-w-3xl`.
+- Landing: hero stays centered; CTAs sit side-by-side in a 2-column grid (`Get started` | `Read FAQs`); "How it works" becomes a 3-column grid of step cards.
+- FAQs: 2-column grid of accordion items, with a wider intro block above.
+- About: text cards stay full width for readability; "Built with" list goes 3-column; bottom CTA constrained to `max-w-sm` and centered.
+- Header pills slightly larger; logo unchanged.
 
-Download `https://app.goclaim.xyz/brand/watermelon.png` to `public/brand/watermelon.png`. Set as favicon and use in header (48px) and hero (128px).
+### Desktop (≥ 1024px)
+- Content column widens to `max-w-5xl` with `px-8`.
+- Landing: split hero — left column has the logo + headline + subhead + stacked CTAs (left-aligned), right column shows the "How it works" 3 steps stacked vertically as a side panel. Below the fold: a wider edge-to-edge band (still inside the column) with a secondary "Why GoClaim" callout strip (3 short value props in a row) reusing existing card tokens — no new copy invented, derived from existing How-it-works/About content.
+- FAQs: 2-column accordion grid with a sticky-feeling intro on the left at `lg:` (intro column + accordion column using `lg:grid-cols-[18rem_1fr]`).
+- About: 2-column grid for the 5 cards (text cards span 2, "Built with" + "Your wallet stays yours" sit side-by-side); "How it works" steps go 3-across.
+- Bottom CTA on FAQs/About constrained to `max-w-sm` and left-aligned (not stretched edge-to-edge).
 
-## Routes & files
+All breakpoint changes use Tailwind responsive prefixes (`md:`, `lg:`) on existing markup — no new components needed beyond minor wrappers. Brutalist tokens (2px radius, hard shadows, 2px black borders, color palette) are preserved at every breakpoint.
 
-```
-src/routes/
-  __root.tsx          (update: fonts <link>, theme-color, favicon, default meta)
-  index.tsx           (landing: hero + how it works)
-  faqs.tsx            (FAQs page)
-  about.tsx           (About page)
-src/components/
-  Shell.tsx           (app-shell wrapper)
-  Header.tsx          (logo + nav pills, prop-driven for which pills to show)
-  Footer.tsx          ("GoClaim — built on Celo + GoodDollar")
-  Step.tsx            (step badge + title + description card row)
-  Faq.tsx             (single <details> accordion item with +/− toggle)
-public/brand/watermelon.png
-```
+## Files touched
 
-Each route file uses `createFileRoute` with per-route `head()` setting title, description, og:title, og:description, og:url, and `<link rel="canonical">` (relative paths since no domain baked in).
+- `src/styles.css` — set body bg to shell green; widen `.app-shell` max-width at `lg:` to `max-w-5xl` and bump horizontal padding at `lg:`.
+- `src/routes/index.tsx` — responsive grid for CTAs and How-it-works; desktop split hero.
+- `src/routes/faqs.tsx` — responsive grid for accordion + intro/accordion split at `lg:`; constrain bottom CTA.
+- `src/routes/about.tsx` — responsive 2-col grid for cards; 3-col "Built with"; constrain bottom CTA.
+- `src/components/Header.tsx` — no structural change; nav pills only.
 
-## Behavior
+## Out of scope
 
-- External CTAs use plain `<a href="https://app.goclaim.xyz" rel="noopener noreferrer">` (no `target="_blank"` for primary app link, matches typical "go to app" UX — will use `target="_blank"` only for the optional gooddollar.org / celo.org links in About).
-- Internal nav uses TanStack `<Link>`.
-- Header nav pills: on `/` show FAQs + ABOUT; on `/faqs` and `/about` show HOME.
-- Reduced-motion respected on the FAQ toggle transitions.
-- Mobile-first: container `max-w-[460px] md:max-w-2xl mx-auto px-4`.
-
-## Out of scope (explicit)
-
-No wagmi/RainbowKit/SIWE, no `/dashboard`, no API calls to the app, no iframe of the dapp, no emojis, no gradients/glass.
+- No new copy, no new sections beyond the desktop value-props strip (which reuses existing wording).
+- No color, font, radius, or shadow changes.
+- No wallet/backend code.
 
 ## Verification
 
-After build: visit `/`, `/faqs`, `/about` in the preview to confirm green shell, fonts loaded, brutalist shadows, accordion +/− toggle behavior, and CTAs link to `https://app.goclaim.xyz`.
+After build, check `/`, `/faqs`, `/about` at mobile / tablet / desktop viewports. Confirm: no white margins at any width, mobile layout unchanged, tablet shows multi-column grids, desktop shows split hero and 2-column content.

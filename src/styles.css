@@ -29,6 +29,10 @@
   @media (min-width: 768px) {
     max-width: 42rem;
   }
+  @media (min-width: 1024px) {
+    max-width: 64rem;
+    padding-inline: 2rem;
+  }
 }
 
 @utility header-bar {
@@ -272,7 +276,7 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background-color: #085020;
     color: var(--color-foreground);
   }
 }
