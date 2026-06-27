@@ -20,13 +20,13 @@ function AboutPage() {
   return (
     <Shell nav="inner">
       <header className="mb-6">
-        <h1 className="font-display font-extrabold text-3xl text-white">About GoClaim</h1>
+        <h1 className="font-display font-extrabold text-3xl md:text-4xl text-white">About GoClaim</h1>
         <p className="mt-2 text-sm text-white/80 font-sans">
           Autopilot GoodDollar UBI for verified humans on Celo.
         </p>
       </header>
 
-      <div className="space-y-3">
+      <div className="space-y-3 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-3">
         <article className="card">
           <h2 className="font-display font-bold text-lg">What is GoClaim?</h2>
           <p className="mt-2 text-sm font-sans text-black/85">
@@ -41,9 +41,9 @@ function AboutPage() {
           </p>
         </article>
 
-        <section>
+        <section className="lg:col-span-2">
           <h2 className="font-display font-bold text-white text-lg mb-3">How it works</h2>
-          <div className="space-y-3">
+          <div className="grid gap-3 md:grid-cols-3">
             <Step n={1} title="Connect" description="Connect the wallet where you receive GoodDollar." />
             <Step n={2} title="Link" description="One quick approval links your GoClaim smart account to GoodDollar." />
             <Step n={3} title="Earn" description="G$ is claimed daily and sent to your wallet automatically." />
@@ -59,7 +59,7 @@ function AboutPage() {
 
         <article className="card">
           <h2 className="font-display font-bold text-lg">Built with</h2>
-          <ul className="mt-2 space-y-2 text-sm font-sans text-black/85">
+          <ul className="mt-2 space-y-2 md:space-y-0 md:grid md:grid-cols-3 md:gap-3 text-sm font-sans text-black/85">
             <li>
               <strong>
                 <a href="https://celo.org" target="_blank" rel="noopener noreferrer" className="underline">Celo</a>
@@ -77,7 +77,7 @@ function AboutPage() {
         </article>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 max-w-sm">
         <a href="https://app.goclaim.xyz" rel="noopener noreferrer" className="btn-hero-primary">
           Open GoClaim
         </a>
