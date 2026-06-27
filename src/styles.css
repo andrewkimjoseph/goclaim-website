@@ -4,6 +4,140 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-shell: #085020;
+  --color-primary: #F83028;
+  --color-accent: #80B040;
+  --color-foreground: #000000;
+  --color-background: #FFFFFF;
+  --radius-brutal: 2px;
+  --shadow-brutal: 4px 4px 0 0 #000000;
+  --shadow-brutal-sm: 3px 3px 0 0 #000000;
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-sans: "Hanken Grotesk", sans-serif;
+}
+
+@utility app-shell {
+  max-width: 460px;
+  margin-inline: auto;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+  background-color: #085020;
+  @media (min-width: 768px) {
+    max-width: 42rem;
+  }
+}
+
+@utility header-bar {
+  padding-block: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #80B040;
+}
+
+@utility section-label-inverse {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: #ffffff;
+  border: 2px solid #80B040;
+  border-radius: 2px;
+  padding: 0.25rem 0.75rem;
+  display: inline-block;
+  transition: background-color 150ms;
+  &:hover { background-color: rgb(255 255 255 / 0.1); }
+}
+
+@utility btn-hero-primary {
+  width: 100%;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  border: 2px solid #000000;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 0 #000000;
+  display: inline-block;
+  text-align: center;
+  transition: transform 100ms, box-shadow 100ms, background-color 150ms;
+  &:hover { background-color: rgb(255 255 255 / 0.95); }
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+}
+
+@utility btn-hero-tertiary {
+  width: 100%;
+  background-color: transparent;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #80B040;
+  border-radius: 2px;
+  display: inline-block;
+  text-align: center;
+  transition: transform 100ms, background-color 150ms;
+  &:hover { background-color: rgb(255 255 255 / 0.1); }
+  &:active { transform: translate(2px, 2px); }
+}
+
+@utility card {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0 0 #000000;
+  padding: 1rem;
+  border-radius: 2px;
+}
+
+@utility step-badge {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: 2px solid #000000;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+@utility faq-toggle {
+  height: 1.75rem;
+  width: 1.75rem;
+  border: 2px solid #000000;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0 0 #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
 /*
  * Design system definition.
  *
