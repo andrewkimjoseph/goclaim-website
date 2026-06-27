@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Shell } from "@/components/Shell";
 import { Faq } from "@/components/Faq";
 
@@ -42,6 +43,7 @@ export const Route = createFileRoute("/faqs")({
 });
 
 function FaqsPage() {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
     <Shell nav="inner">
       <div className="lg:grid lg:grid-cols-[18rem_1fr] lg:gap-10">
@@ -56,8 +58,14 @@ function FaqsPage() {
         </header>
 
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-2 auto-rows-min items-start">
-          {FAQS.map((f) => (
-            <Faq key={f.q} q={f.q} a={f.a} />
+          {FAQS.map((f, i) => (
+            <Faq
+              key={f.q}
+              q={f.q}
+              a={f.a}
+              open={openIdx === i}
+              onToggle={() => setOpenIdx((cur) => (cur === i ? null : i))}
+            />
           ))}
         </div>
       </div>

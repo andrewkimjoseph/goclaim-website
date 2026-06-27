@@ -1,15 +1,24 @@
-import { useId, useState } from "react";
+import { useId } from "react";
 import { Plus, Minus } from "lucide-react";
 
-export function Faq({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
+export function Faq({
+  q,
+  a,
+  open,
+  onToggle,
+}: {
+  q: string;
+  a: string;
+  open: boolean;
+  onToggle: () => void;
+}) {
   const panelId = useId();
 
   return (
     <div className="card transition-transform duration-150 ease-out hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#000]">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={onToggle}
         aria-expanded={open}
         aria-controls={panelId}
         className="w-full flex items-center justify-between gap-3 text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-[#F83028] focus-visible:outline-offset-2"
