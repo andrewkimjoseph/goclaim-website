@@ -276,7 +276,7 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background-color: #085020;
     color: var(--color-foreground);
   }
 }
