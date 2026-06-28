@@ -48,7 +48,7 @@ src/
     Faq.tsx         # accordion item
   styles.css        # brutalist tokens + utility classes
 public/
-  brand/watermelon.png
+  watermelon.svg
 ```
 
 All primary CTAs link to `https://app.goclaim.xyz`.

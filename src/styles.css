@@ -71,7 +71,13 @@
   display: inline-block;
   text-align: center;
   transition: transform 100ms, box-shadow 100ms, background-color 150ms;
-  &:hover { background-color: rgb(255 255 255 / 0.95); }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 0 #000000;
+      background-color: rgb(255 255 255 / 0.95);
+    }
+  }
   &:active {
     transform: translate(2px, 2px);
     box-shadow: none;
@@ -89,9 +95,18 @@
   border-radius: 2px;
   display: inline-block;
   text-align: center;
-  transition: transform 100ms, background-color 150ms;
-  &:hover { background-color: rgb(255 255 255 / 0.1); }
-  &:active { transform: translate(2px, 2px); }
+  transition: transform 100ms, box-shadow 100ms, background-color 150ms;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 0 #000000;
+      background-color: rgb(255 255 255 / 0.1);
+    }
+  }
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
 }
 
 @utility card {

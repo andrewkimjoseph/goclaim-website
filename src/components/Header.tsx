@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export type HeaderNav = "home" | "inner";
 
@@ -6,7 +7,7 @@ export function Header({ nav }: { nav: HeaderNav }) {
   return (
     <header className="header-bar">
       <Link to="/" aria-label="GoClaim home" className="inline-flex items-center">
-        <img src="/brand/watermelon.png" alt="GoClaim" width={48} height={48} className="h-12 w-12" />
+        <BrandLogo size="nav" />
       </Link>
       <nav className="flex items-center gap-2">
         {nav === "home" ? (

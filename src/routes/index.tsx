@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Shell } from "@/components/Shell";
 import { Step } from "@/components/Step";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,7 +22,7 @@ function Index() {
     <Shell nav="home">
       <section className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-          <img src="/brand/watermelon.png" alt="GoClaim" width={128} height={128} className="h-32 w-32 lg:h-36 lg:w-36" />
+          <BrandLogo size="hero" priority className="h-32 w-32 lg:h-36 lg:w-36" />
           <h1 className="mt-6 font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05]">
             Your UBI, on autopilot.
           </h1>
