@@ -27,7 +27,7 @@ export function BrandLogo({
 
   return (
     <img
-      src="/watermelon.svg"
+      src="/logo.svg"
       alt={alt}
       width={px}
       height={px}
