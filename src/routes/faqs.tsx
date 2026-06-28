@@ -50,7 +50,7 @@ function FaqsPage() {
         <header className="mb-6 lg:mb-0">
           <h1 className="font-display font-extrabold text-3xl md:text-4xl text-white">FAQs</h1>
           <p className="mt-2 text-sm text-white/80 font-sans">Quick answers about how GoClaim works.</p>
-          <div className="hidden lg:block mt-8 max-w-xs">
+          <div className="hidden lg:block mt-8 w-full">
             <a href="https://app.goclaim.xyz" rel="noopener noreferrer" className="btn-hero-primary">
               Get started
             </a>
@@ -70,7 +70,7 @@ function FaqsPage() {
         </div>
       </div>
 
-      <div className="mt-10 lg:hidden max-w-sm">
+      <div className="mt-10 lg:hidden w-full">
         <a href="https://app.goclaim.xyz" rel="noopener noreferrer" className="btn-hero-primary">
           Get started
         </a>

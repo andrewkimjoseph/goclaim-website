@@ -77,7 +77,7 @@ function AboutPage() {
         </article>
       </div>
 
-      <div className="mt-10 max-w-sm">
+      <div className="mt-10 w-full">
         <a href="https://app.goclaim.xyz" rel="noopener noreferrer" className="btn-hero-primary">
           Open GoClaim
         </a>
