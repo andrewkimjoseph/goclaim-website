@@ -5,7 +5,7 @@ export type HeaderNav = "home" | "inner";
 
 export function Header({ nav }: { nav: HeaderNav }) {
   return (
-    <header className="header-bar">
+    <header className="header-bar" style={{ viewTransitionName: "site-header" }}>
       <Link to="/" aria-label="GoClaim home" className="inline-flex items-center">
         <BrandLogo size="nav" />
       </Link>

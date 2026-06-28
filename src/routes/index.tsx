@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/Shell";
 import { Step } from "@/components/Step";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -33,7 +33,9 @@ function Index() {
             <a href="https://app.goclaim.xyz" rel="noopener noreferrer" className="btn-hero-primary">
               Get started
             </a>
-            <a href="/faqs" className="btn-hero-tertiary">Read FAQs</a>
+            <Link to="/faqs" className="btn-hero-tertiary">
+              Read FAQs
+            </Link>
           </div>
         </div>
 
