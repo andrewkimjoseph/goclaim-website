@@ -22,11 +22,15 @@ export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
   ];
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
       {items.map((item) => (
-        <article key={item.label} className="card">
-          <p className="text-xs font-sans uppercase tracking-wide text-black/60">{item.label}</p>
-          <p className="mt-2 font-display font-extrabold text-2xl">{item.value}</p>
+        <article key={item.label} className="card p-3 sm:p-4">
+          <p className="text-[10px] font-sans uppercase leading-tight tracking-wide text-black/60 sm:text-xs">
+            {item.label}
+          </p>
+          <p className="mt-1 font-display text-lg font-extrabold leading-none sm:mt-2 sm:text-2xl">
+            {item.value}
+          </p>
         </article>
       ))}
     </div>
