@@ -200,6 +200,22 @@
   }
 }
 
+@keyframes loader-block-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-45%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@utility loader-block-bounce {
+  animation: loader-block-bounce 1s infinite;
+}
+
 ::view-transition-old(.page-default) {
   animation:
     var(--page-duration-exit) ease-out both page-fade-out,
