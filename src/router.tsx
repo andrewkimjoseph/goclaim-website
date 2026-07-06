@@ -1,11 +1,12 @@
-import { QueryClient } from "@tanstack/react-query";
 import { createRouter, type ParsedLocation } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
+import { queryClient } from "./lib/query-persist";
 
 const ROUTE_DEPTH: Record<string, number> = {
   "/": 0,
   "/faqs": 1,
   "/about": 1,
+  "/stats": 1,
 };
 
 function resolveViewTransitionTypes(
@@ -24,8 +25,6 @@ function resolveViewTransitionTypes(
 }
 
 export const getRouter = () => {
-  const queryClient = new QueryClient();
-
   const router = createRouter({
     routeTree,
     context: { queryClient },
