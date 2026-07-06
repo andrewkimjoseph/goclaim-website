@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useIsRestoring } from "@tanstack/react-query";
+import { RefreshCw } from "lucide-react";
 import { Shell } from "@/components/Shell";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { useMinDuration } from "@/hooks/use-min-duration";
@@ -64,36 +65,36 @@ function StatsPage() {
   return (
     <Shell nav="inner">
       <header className="mb-6">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h1 className="font-display font-extrabold text-3xl md:text-4xl text-white">
-              GoClaim stats
-            </h1>
-            <p className="mt-2 text-sm text-white/80 font-sans">
-              Live on-chain progress from the GoClaim{" "}
-              <a
-                href={`https://celoscan.io/address/${GOCLAIM_PROXY_ADDRESS}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline text-white hover:text-white/90"
-              >
-                contract
-              </a>{" "}
-              on Celo.
-            </p>
-            <p className="mt-1 text-sm text-white/60 font-sans">
-              {formatStatsSinceNote(data?.statsSinceDay ?? null)}
-            </p>
-          </div>
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="font-display font-extrabold text-3xl md:text-4xl text-white">
+            GoClaim stats
+          </h1>
           <button
             type="button"
             onClick={() => void refetch()}
             disabled={isFetching}
-            className="btn-hero-tertiary inline-flex w-auto shrink-0 items-center justify-center px-4 py-2 text-sm disabled:opacity-60"
+            aria-label="Refresh stats"
+            className="section-label-inverse inline-flex shrink-0 items-center gap-1.5 px-3 py-1 text-xs disabled:opacity-60"
           >
-            Refresh
+            <RefreshCw className="size-3.5" aria-hidden />
+            <span>Refresh</span>
           </button>
         </div>
+        <p className="mt-2 text-sm text-white/80 font-sans">
+          Live on-chain progress from the GoClaim{" "}
+          <a
+            href={`https://celoscan.io/address/${GOCLAIM_PROXY_ADDRESS}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline text-white hover:text-white/90"
+          >
+            contract
+          </a>{" "}
+          on Celo.
+        </p>
+        <p className="mt-1 text-sm text-white/60 font-sans">
+          {formatStatsSinceNote(data?.statsSinceDay ?? null)}
+        </p>
       </header>
 
       {isInitialLoad ? (
