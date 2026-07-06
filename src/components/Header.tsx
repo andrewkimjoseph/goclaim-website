@@ -12,11 +12,20 @@ export function Header({ nav }: { nav: HeaderNav }) {
       <nav className="flex items-center gap-2">
         {nav === "home" ? (
           <>
-            <Link to="/faqs" className="section-label-inverse">FAQs</Link>
-            <Link to="/about" className="section-label-inverse">About</Link>
+            <Link to="/stats" className="section-label-inverse">
+              Stats
+            </Link>
+            <Link to="/faqs" className="section-label-inverse">
+              FAQs
+            </Link>
+            <Link to="/about" className="section-label-inverse">
+              About
+            </Link>
           </>
         ) : (
-          <Link to="/" className="section-label-inverse">Home</Link>
+          <Link to="/" className="section-label-inverse">
+            Home
+          </Link>
         )}
       </nav>
     </header>
