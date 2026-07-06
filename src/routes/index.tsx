@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/Shell";
 import { Step } from "@/components/Step";
 import { BrandLogo } from "@/components/BrandLogo";
+import { APP_URL, HERO_SUBTITLE, HERO_TAGLINE, STEPS, WHY_GOCLAIM } from "@/lib/copy";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,13 +25,11 @@ function Index() {
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <BrandLogo size="hero" priority className="h-32 w-32 lg:h-36 lg:w-36" />
           <h1 className="mt-6 font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05]">
-            Your UBI, on autopilot.
+            {HERO_TAGLINE}
           </h1>
-          <p className="mt-4 text-base md:text-lg text-white/85 font-sans max-w-md">
-            GoClaim creates a smart account that claims GoodDollar for you every day and sends G$ straight to your wallet.
-          </p>
+          <p className="mt-4 text-base md:text-lg text-white/85 font-sans max-w-md">{HERO_SUBTITLE}</p>
           <div className="mt-8 w-full grid gap-3 md:grid-cols-2 lg:max-w-md">
-            <a href="https://app.goclaim.xyz" rel="noopener noreferrer" className="btn-hero-primary">
+            <a href={APP_URL} rel="noopener noreferrer" className="btn-hero-primary">
               Get started
             </a>
             <Link to="/faqs" className="btn-hero-tertiary">
@@ -41,37 +40,33 @@ function Index() {
 
         <div className="hidden lg:block">
           <div className="space-y-3">
-            <Step n={1} title="Connect" description="Connect the wallet where you receive GoodDollar." />
-            <Step n={2} title="Link" description="One quick approval links your GoClaim smart account to GoodDollar." />
-            <Step n={3} title="Earn" description="G$ is claimed daily and sent to your wallet automatically." />
+            {STEPS.map((step, i) => (
+              <Step key={step.title} n={i + 1} title={step.title} description={step.description} variant="card" />
+            ))}
           </div>
         </div>
       </section>
 
       <section className="mt-12 lg:hidden">
         <h2 className="font-display font-bold text-white text-lg mb-4">How it works</h2>
-        <div className="grid gap-3 md:grid-cols-3">
-          <Step n={1} title="Connect" description="Connect the wallet where you receive GoodDollar." />
-          <Step n={2} title="Link" description="One quick approval links your GoClaim smart account to GoodDollar." />
-          <Step n={3} title="Earn" description="G$ is claimed daily and sent to your wallet automatically." />
+        <div className="grid gap-4">
+          {STEPS.map((step, i) => (
+            <Step key={step.title} n={i + 1} title={step.title} description={step.description} variant="inline" />
+          ))}
         </div>
       </section>
 
       <section className="hidden lg:block mt-16">
         <h2 className="font-display font-bold text-white text-lg mb-4">Why GoClaim</h2>
-        <div className="grid grid-cols-3 gap-3">
-          <div className="card">
-            <h3 className="font-display font-bold text-base">Set it once</h3>
-            <p className="mt-2 text-sm font-sans text-black/80">A one-time GoodDollar link, then nothing to remember.</p>
-          </div>
-          <div className="card">
-            <h3 className="font-display font-bold text-base">Daily at 12:00 UTC</h3>
-            <p className="mt-2 text-sm font-sans text-black/80">Claims run every day and land in your wallet right after.</p>
-          </div>
-          <div className="card">
-            <h3 className="font-display font-bold text-base">Your wallet, your G$</h3>
-            <p className="mt-2 text-sm font-sans text-black/80">G$ goes straight to the verified wallet you connected.</p>
-          </div>
+        <div className="grid grid-cols-3 gap-4">
+          {WHY_GOCLAIM.map((item) => (
+            <div key={item.title} className="surface-inline">
+              <div>
+                <h3 className="font-display font-bold text-base text-white">{item.title}</h3>
+                <p className="mt-1 text-sm font-sans text-white/80">{item.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </Shell>
