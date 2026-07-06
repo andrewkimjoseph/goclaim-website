@@ -28,7 +28,7 @@ export function Faq({
         <span
           aria-hidden
           className={`inline-flex h-7 w-7 shrink-0 items-center justify-center border-2 border-black rounded-brutal font-display font-bold text-lg leading-none shadow-[2px_2px_0_0_#000000] transition-colors duration-200 ${
-            open ? "bg-[#F83028] text-white" : "bg-white text-foreground"
+            open ? "bg-brand text-white" : "bg-white text-foreground"
           }`}
         >
           <span className={open ? "hidden" : "block"}>+</span>
