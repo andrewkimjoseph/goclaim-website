@@ -1,0 +1,1438 @@
+{
+    "data": {
+        "__schema": {
+            "types": [
+                {
+                    "name": "Aggregation_current",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "Aggregation_interval",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "BigDecimal",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "BigInt",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "BlockChangedFilter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "Block_height",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "Boolean",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "Bytes",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "ContractUpgraded",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "oldVersion",
+                            "type": {
+                                "name": "BigInt",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "newVersion",
+                            "type": {
+                                "name": "BigInt",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "newImplementation",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ContractUpgraded_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "ContractUpgraded_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "EIP712DomainChanged",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "EIP712DomainChanged_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "EIP712DomainChanged_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "Float",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimAccountConnected",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "smartAccountAddress",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "whitelistedRoot",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GoClaimAccountConnected_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimAccountConnected_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimAccountCreated",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "smartAccountAddress",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GoClaimAccountCreated_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimAccountCreated_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimSignerUpdated",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "oldSigner",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "newSigner",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GoClaimSignerUpdated_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimSignerUpdated_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimTokenTransferred",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "smartAccountAddress",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "recipient",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "token",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "amount",
+                            "type": {
+                                "name": "BigInt",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GoClaimTokenTransferred_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimTokenTransferred_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimUBIClaimed",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "smartAccountAddress",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "whitelistedRoot",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "token",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "amount",
+                            "type": {
+                                "name": "BigInt",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GoClaimUBIClaimed_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "GoClaimUBIClaimed_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "ID",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "Initialized",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "version",
+                            "type": {
+                                "name": "BigInt",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Initialized_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "Initialized_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "Int",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "Int8",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "OrderDirection",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "OwnershipTransferred",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "previousOwner",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "newOwner",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "OwnershipTransferred_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "OwnershipTransferred_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "Paused",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "account",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Paused_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "Paused_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "Query",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "contractUpgraded",
+                            "type": {
+                                "name": "ContractUpgraded",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "contractUpgradeds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "eip712DomainChanged",
+                            "type": {
+                                "name": "EIP712DomainChanged",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "eip712DomainChangeds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "goClaimAccountConnected",
+                            "type": {
+                                "name": "GoClaimAccountConnected",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "goClaimAccountConnecteds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "goClaimAccountCreated",
+                            "type": {
+                                "name": "GoClaimAccountCreated",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "goClaimAccountCreateds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "goClaimSignerUpdated",
+                            "type": {
+                                "name": "GoClaimSignerUpdated",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "goClaimSignerUpdateds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "goClaimTokenTransferred",
+                            "type": {
+                                "name": "GoClaimTokenTransferred",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "goClaimTokenTransferreds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "goClaimUBIClaimed",
+                            "type": {
+                                "name": "GoClaimUBIClaimed",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "goClaimUBIClaimeds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "initialized",
+                            "type": {
+                                "name": "Initialized",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "initializeds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "ownershipTransferred",
+                            "type": {
+                                "name": "OwnershipTransferred",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "ownershipTransferreds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "paused",
+                            "type": {
+                                "name": "Paused",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "pauseds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "unpaused",
+                            "type": {
+                                "name": "Unpaused",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "unpauseds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "upgraded",
+                            "type": {
+                                "name": "Upgraded",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "upgradeds",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": null,
+                                    "kind": "LIST"
+                                }
+                            }
+                        },
+                        {
+                            "name": "_meta",
+                            "type": {
+                                "name": "_Meta_",
+                                "kind": "OBJECT",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "String",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "Timestamp",
+                    "kind": "SCALAR",
+                    "fields": null
+                },
+                {
+                    "name": "Unpaused",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "account",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Unpaused_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "Unpaused_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "Upgraded",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "ID",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "block_number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "BigInt",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "transactionHash_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "contractId_",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "implementation",
+                            "type": {
+                                "name": "String",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Upgraded_filter",
+                    "kind": "INPUT_OBJECT",
+                    "fields": null
+                },
+                {
+                    "name": "Upgraded_orderBy",
+                    "kind": "ENUM",
+                    "fields": null
+                },
+                {
+                    "name": "_Block_",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "hash",
+                            "type": {
+                                "name": "Bytes",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "number",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "Int",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "timestamp",
+                            "type": {
+                                "name": "Int",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        },
+                        {
+                            "name": "parentHash",
+                            "type": {
+                                "name": "Bytes",
+                                "kind": "SCALAR",
+                                "ofType": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "_Meta_",
+                    "kind": "OBJECT",
+                    "fields": [
+                        {
+                            "name": "block",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "_Block_",
+                                    "kind": "OBJECT"
+                                }
+                            }
+                        },
+                        {
+                            "name": "deployment",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "String",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        },
+                        {
+                            "name": "hasIndexingErrors",
+                            "type": {
+                                "name": null,
+                                "kind": "NON_NULL",
+                                "ofType": {
+                                    "name": "Boolean",
+                                    "kind": "SCALAR"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "_SubgraphErrorPolicy_",
+                    "kind": "ENUM",
+                    "fields": null
+                }
+            ]
+        }
+    }
+}
