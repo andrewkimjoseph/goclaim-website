@@ -8,8 +8,8 @@ export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
       value: stats.accountsCreated.toLocaleString("en-US"),
     },
     {
-      label: "Total claimed",
-      value: `G$ ${formatGdWeiWhole(stats.totalClaimedWei)}`,
+      label: "G$ total claimed",
+      value: formatGdWeiWhole(stats.totalClaimedWei),
     },
     {
       label: "Total claims",
@@ -21,7 +21,7 @@ export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
     },
     {
       label: "G$ claimed today",
-      value: `G$ ${formatGdWeiWhole(stats.claimedTodayWei ?? "0")}`,
+      value: formatGdWeiWhole(stats.claimedTodayWei ?? "0"),
     },
     {
       label: "Total txns",
@@ -36,7 +36,7 @@ export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
           <p className="text-[10px] font-sans uppercase leading-tight tracking-wide text-black/60 sm:text-xs">
             {item.label}
           </p>
-          <p className="mt-1 font-display text-lg font-extrabold leading-none sm:mt-2 sm:text-2xl">
+          <p className="mt-1 font-display text-base font-extrabold leading-none sm:mt-2 sm:text-lg">
             {item.value}
           </p>
         </article>
