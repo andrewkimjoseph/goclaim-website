@@ -8,10 +8,12 @@ export const QUERY_CACHE_BUSTER = "2026-07-goclaim-stats-v3";
 
 const PERSIST_MAX_AGE_MS = 1000 * 60 * 60 * 24; // 24 hours
 
+const STATS_STALE_TIME_MS = 30 * 60 * 1000; // 30 minutes
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60_000,
+      staleTime: STATS_STALE_TIME_MS,
       gcTime: 1000 * 60 * 60 * 24 * 7,
       retry: 2,
     },
