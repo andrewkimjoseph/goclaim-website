@@ -4,7 +4,7 @@ import type { PersistQueryClientOptions } from "@tanstack/react-query-persist-cl
 
 const PERSIST_STORAGE_KEY = "goclaim-react-query-cache";
 /** Bump when persisted query data shape changes so stale caches are dropped. */
-export const QUERY_CACHE_BUSTER = "2026-07-goclaim-stats-v1";
+export const QUERY_CACHE_BUSTER = "2026-07-goclaim-stats-v3";
 
 const PERSIST_MAX_AGE_MS = 1000 * 60 * 60 * 24; // 24 hours
 

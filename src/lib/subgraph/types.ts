@@ -67,6 +67,8 @@ export type GoClaimStats = {
   linkRatePercent: number;
   totalClaimedWei: string;
   successfulClaims: number;
+  claimsToday: number;
+  claimedTodayWei: string;
   totalTransactions: number;
   adoptionSeries: CumulativeAdoptionPoint[];
   dailyVolume: DailyVolumePoint[];

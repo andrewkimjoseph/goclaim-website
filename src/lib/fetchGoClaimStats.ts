@@ -61,6 +61,10 @@ export async function fetchGoClaimStats(): Promise<GoClaimStats> {
   ]);
 
   const dedupedClaims = dedupeClaims(ubiRows);
+  const todayKey = utcDayKey(String(Math.floor(Date.now() / 1000)));
+  const todayClaims = dedupedClaims.filter((claim) => utcDayKey(claim.timestamp_) === todayKey);
+  const claimsToday = todayClaims.length;
+  const claimedTodayWei = sumWei(todayClaims.map((row) => row.amount));
   const accountsCreated = created.length;
   const accountsConnected = connected.length;
   const linkRatePercent = accountsCreated > 0 ? (accountsConnected / accountsCreated) * 100 : 0;
@@ -77,6 +81,8 @@ export async function fetchGoClaimStats(): Promise<GoClaimStats> {
     linkRatePercent,
     totalClaimedWei: sumWei(dedupedClaims.map((row) => row.amount)),
     successfulClaims: dedupedClaims.length,
+    claimsToday,
+    claimedTodayWei,
     totalTransactions,
     adoptionSeries: buildCumulativeAdoptionSeries(created, connected),
     dailyVolume: buildDailyVolumeSeries(dedupedClaims),
