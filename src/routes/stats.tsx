@@ -93,7 +93,7 @@ function StatsPage() {
           </a>{" "}
           on Celo.
         </p>
-        <p className="mt-1 text-sm text-white/60 font-sans">
+        <p className="mt-3 text-sm text-white/60 font-sans">
           {formatStatsSinceNote(data?.statsSinceDay ?? null)}
         </p>
       </header>

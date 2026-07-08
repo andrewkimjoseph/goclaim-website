@@ -38,7 +38,7 @@ export function DailyVolumeChart({ data }: { data: DailyVolumePoint[] }) {
   return (
     <StatsChartCard
       title="Daily G$ volume"
-      description="GoodDollar claimed by GoClaim each day (deduped on-chain events)."
+      description="GoodDollar claimed by GoClaim each day."
     >
       <ChartContainer config={chartConfig} className="aspect-[16/10] w-full">
         <BarChart data={chartData} margin={{ left: 0, right: 8, top: 8, bottom: 0 }}>

@@ -35,7 +35,7 @@ export function DailyClaimsChart({ data }: { data: DailyVolumePoint[] }) {
   return (
     <StatsChartCard
       title="Daily claims"
-      description="Successful GoodDollar UBI claims per day (deduped on-chain events)."
+      description="Successful GoodDollar UBI claims per day."
     >
       <ChartContainer config={chartConfig} className="aspect-[21/9] w-full">
         <LineChart data={data} margin={{ left: 0, right: 8, top: 8, bottom: 0 }}>
