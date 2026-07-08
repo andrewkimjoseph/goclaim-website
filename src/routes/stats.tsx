@@ -4,6 +4,7 @@ import { RefreshCw } from "lucide-react";
 import { Shell } from "@/components/Shell";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { useMinDuration } from "@/hooks/use-min-duration";
+import { DailyClaimsChart } from "@/components/stats/DailyClaimsChart";
 import { DailyGrowthChart } from "@/components/stats/DailyGrowthChart";
 import { DailyTransactionsChart } from "@/components/stats/DailyTransactionsChart";
 import { DailyVolumeChart } from "@/components/stats/DailyVolumeChart";
@@ -136,7 +137,10 @@ function StatsPage() {
           >
             <StatsKpiGrid stats={data} />
 
-            <DailyTransactionsChart data={data.dailyTransactions} />
+            <div className="grid gap-4 lg:grid-cols-2">
+              <DailyTransactionsChart data={data.dailyTransactions} />
+              <DailyClaimsChart data={data.dailyVolume} />
+            </div>
 
             <div className="grid gap-4 lg:grid-cols-2">
               <DailyVolumeChart data={data.dailyVolume} />

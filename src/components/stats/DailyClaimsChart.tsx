@@ -5,13 +5,13 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart";
-import type { DailyTransactionsPoint } from "@/lib/subgraph/types";
+import type { DailyVolumePoint } from "@/lib/subgraph/types";
 import { StatsChartCard } from "./StatsChartCard";
 
 const chartConfig = {
-  transactions: {
-    label: "Transactions:",
-    color: "#2BA6FF",
+  claimCount: {
+    label: "Claims:",
+    color: "#F83028",
   },
 } satisfies ChartConfig;
 
@@ -20,22 +20,22 @@ function formatDayLabel(day: string) {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
-export function DailyTransactionsChart({ data }: { data: DailyTransactionsPoint[] }) {
+export function DailyClaimsChart({ data }: { data: DailyVolumePoint[] }) {
   if (!data.length) {
     return (
       <StatsChartCard
-        title="Daily transactions"
-        description="Unique transaction hashes across all GoClaim event types."
+        title="Daily claims"
+        description="Successful GoodDollar UBI claims per day."
       >
-        <p className="text-sm font-sans text-black/70">No transactions indexed yet.</p>
+        <p className="text-sm font-sans text-black/70">No claims indexed yet.</p>
       </StatsChartCard>
     );
   }
 
   return (
     <StatsChartCard
-      title="Daily transactions"
-      description="Unique transaction hashes across all GoClaim event types."
+      title="Daily claims"
+      description="Successful GoodDollar UBI claims per day (deduped on-chain events)."
     >
       <ChartContainer config={chartConfig} className="aspect-[21/9] w-full">
         <LineChart data={data} margin={{ left: 0, right: 8, top: 8, bottom: 0 }}>
@@ -58,10 +58,10 @@ export function DailyTransactionsChart({ data }: { data: DailyTransactionsPoint[
           />
           <Line
             type="monotone"
-            dataKey="transactions"
-            stroke="var(--color-transactions)"
+            dataKey="claimCount"
+            stroke="var(--color-claimCount)"
             strokeWidth={2}
-            dot={{ fill: "var(--color-transactions)", r: 3 }}
+            dot={{ fill: "var(--color-claimCount)", r: 3 }}
             activeDot={{ r: 5 }}
           />
         </LineChart>
