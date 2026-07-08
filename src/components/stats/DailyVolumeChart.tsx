@@ -59,8 +59,8 @@ export function DailyVolumeChart({ data }: { data: DailyVolumePoint[] }) {
                 formatter={(value, _name, item) => {
                   const payload = item.payload as DailyVolumePoint & { amountGd: number };
                   return [
-                    `${formatGdWei(payload.amountWei)} G$ (${payload.claimCount} claims)`,
-                    "Volume",
+                    `${formatGdWei(payload.amountWei)} G$ (${payload.claimCount} claims) `,
+                    "G$ claimed",
                   ];
                 }}
               />

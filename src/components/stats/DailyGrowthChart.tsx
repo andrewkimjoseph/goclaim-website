@@ -10,7 +10,7 @@ import { StatsChartCard } from "./StatsChartCard";
 
 const chartConfig = {
   created: {
-    label: "New accounts",
+    label: "New accounts:",
     color: "#00B85F",
   },
 } satisfies ChartConfig;
