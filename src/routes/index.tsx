@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/Shell";
 import { Step } from "@/components/Step";
 import { BrandLogo } from "@/components/BrandLogo";
-import { APP_URL, HERO_SUBTITLE, HERO_TAGLINE, STEPS, WHY_GOCLAIM } from "@/lib/copy";
+import { AppLink } from "@/components/AppLink";
+import { HERO_SUBTITLE, HERO_TAGLINE, STEPS, WHY_GOCLAIM } from "@/lib/copy";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,9 +30,7 @@ function Index() {
           </h1>
           <p className="mt-4 text-base md:text-lg text-white/85 font-sans max-w-md">{HERO_SUBTITLE}</p>
           <div className="mt-8 w-full grid gap-3 md:grid-cols-2 lg:max-w-md">
-            <a href={APP_URL} rel="noopener noreferrer" className="btn-hero-primary">
-              Get started
-            </a>
+            <AppLink />
             <Link to="/faqs" className="btn-hero-tertiary">
               Read FAQs
             </Link>

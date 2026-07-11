@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/Shell";
 import { Step } from "@/components/Step";
+import { AppLink } from "@/components/AppLink";
 import {
   ABOUT_BLURB,
   ABOUT_SUBTITLE,
-  APP_URL,
   BUILT_WITH,
   STEPS,
   TRUST_BLURB,
@@ -78,9 +78,7 @@ function AboutPage() {
       </p>
 
       <div className="mt-10 w-full">
-        <a href={APP_URL} rel="noopener noreferrer" className="btn-hero-primary">
-          Open GoClaim
-        </a>
+        <AppLink />
       </div>
     </Shell>
   );

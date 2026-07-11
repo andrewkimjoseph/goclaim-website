@@ -1,4 +1,5 @@
 export const APP_URL = "https://app.goclaim.xyz";
+export const OPEN_GOCLAIM_LABEL = "Open GoClaim";
 
 export const HERO_TAGLINE = "Your UBI, on autopilot.";
 export const HERO_SUBTITLE =

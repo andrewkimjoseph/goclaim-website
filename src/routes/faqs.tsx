@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Shell } from "@/components/Shell";
 import { Faq } from "@/components/Faq";
-import { APP_URL, FAQS } from "@/lib/copy";
+import { AppLink } from "@/components/AppLink";
+import { FAQS } from "@/lib/copy";
 
 export const Route = createFileRoute("/faqs")({
   head: () => ({
@@ -41,9 +42,7 @@ function FaqsPage() {
           <h1 className="font-display font-extrabold text-3xl md:text-4xl text-white">FAQs</h1>
           <p className="mt-2 text-sm text-white/80 font-sans">Quick answers about how GoClaim works.</p>
           <div className="hidden lg:block mt-8 w-full">
-            <a href={APP_URL} rel="noopener noreferrer" className="btn-hero-primary">
-              Get started
-            </a>
+            <AppLink />
           </div>
         </header>
 
@@ -61,9 +60,7 @@ function FaqsPage() {
       </div>
 
       <div className="mt-10 lg:hidden w-full">
-        <a href={APP_URL} rel="noopener noreferrer" className="btn-hero-primary">
-          Get started
-        </a>
+        <AppLink />
       </div>
     </Shell>
   );
