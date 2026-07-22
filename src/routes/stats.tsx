@@ -52,6 +52,26 @@ export const Route = createFileRoute("/stats")({
   component: StatsPage,
 });
 
+function StatsLoadingOverlay({
+  label,
+  visible = true,
+}: {
+  label: string;
+  visible?: boolean;
+}) {
+  return (
+    <div
+      className={`pointer-events-none fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ease-out ${
+        visible ? "opacity-100" : "opacity-0"
+      }`}
+      aria-hidden={!visible}
+      aria-busy={visible}
+    >
+      <LoadingSpinner label={label} />
+    </div>
+  );
+}
+
 function StatsPage() {
   const isRestoring = useIsRestoring();
   const { data, isLoading, isError, error, refetch, isFetching } = useQuery({
@@ -98,11 +118,7 @@ function StatsPage() {
         </p>
       </header>
 
-      {isInitialLoad ? (
-        <div className="flex justify-center py-16">
-          <LoadingSpinner label="Loading..." />
-        </div>
-      ) : null}
+      {isInitialLoad ? <StatsLoadingOverlay label="Loading..." /> : null}
 
       {isError ? (
         <div className="card space-y-3">
@@ -121,14 +137,7 @@ function StatsPage() {
 
       {data ? (
         <div className="relative">
-          <div
-            className={`pointer-events-none fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ease-out ${
-              showRefreshing ? "opacity-100" : "opacity-0"
-            }`}
-            aria-hidden={!showRefreshing}
-          >
-            <LoadingSpinner label="Refreshing" />
-          </div>
+          <StatsLoadingOverlay label="Refreshing" visible={showRefreshing} />
 
           <div
             className={`space-y-4 transition-opacity duration-300 ease-out ${
