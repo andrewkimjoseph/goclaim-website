@@ -46,7 +46,7 @@ function FaqsPage() {
           </div>
         </header>
 
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-2 auto-rows-min items-start">
+        <div className="grid gap-3 auto-rows-min items-start">
           {FAQS.map((f, i) => (
             <Faq
               key={f.q}
