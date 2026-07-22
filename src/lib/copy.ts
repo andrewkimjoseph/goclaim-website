@@ -1,5 +1,7 @@
 export const APP_URL = "https://app.goclaim.xyz";
 export const OPEN_GOCLAIM_LABEL = "Open GoClaim";
+export const VIEW_STATS_LABEL = "View stats";
+export const READ_FAQS_LABEL = "Read FAQs";
 
 export const HERO_TAGLINE = "Your UBI, on autopilot.";
 export const HERO_SUBTITLE =

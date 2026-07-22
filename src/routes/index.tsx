@@ -3,7 +3,7 @@ import { Shell } from "@/components/Shell";
 import { Step } from "@/components/Step";
 import { BrandLogo } from "@/components/BrandLogo";
 import { AppLink } from "@/components/AppLink";
-import { HERO_SUBTITLE, HERO_TAGLINE, STEPS, WHY_GOCLAIM } from "@/lib/copy";
+import { HERO_SUBTITLE, HERO_TAGLINE, READ_FAQS_LABEL, STEPS, VIEW_STATS_LABEL, WHY_GOCLAIM } from "@/lib/copy";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,11 +29,19 @@ function Index() {
             {HERO_TAGLINE}
           </h1>
           <p className="mt-4 text-base md:text-lg text-white/85 font-sans max-w-md">{HERO_SUBTITLE}</p>
-          <div className="mt-8 w-full grid gap-3 md:grid-cols-2 lg:max-w-md">
+          <div className="mt-16 w-full pt-12 lg:max-w-md">
             <AppLink />
-            <Link to="/faqs" className="btn-hero-tertiary">
-              Read FAQs
-            </Link>
+            <nav
+              className="mt-4 grid w-full grid-cols-2 gap-3"
+              aria-label="Explore GoClaim"
+            >
+              <Link to="/stats" className="section-label-inverse block w-full py-3.5 text-center">
+                {VIEW_STATS_LABEL}
+              </Link>
+              <Link to="/faqs" className="section-label-inverse block w-full py-3.5 text-center">
+                {READ_FAQS_LABEL}
+              </Link>
+            </nav>
           </div>
         </div>
 
