@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/chart";
 import type { DailyVolumePoint } from "@/lib/subgraph/types";
 import { formatGdWei } from "@/lib/formatGd";
-import { formatUsdmWhole } from "@/lib/formatUsdm";
+import { formatUsdmDisplay } from "@/lib/formatUsdm";
 import { StatsChartCard } from "./StatsChartCard";
 
 const chartConfig = {
@@ -59,7 +59,7 @@ export function DailyVolumeChart({ data }: { data: DailyVolumePoint[] }) {
                 labelFormatter={(value) => formatDayLabel(String(value))}
                 formatter={(value, _name, item) => {
                   const payload = item.payload as DailyVolumePoint & { amountGd: number };
-                  const usdm = formatUsdmWhole(payload.amountUsdm);
+                  const usdm = formatUsdmDisplay(payload.amountUsdm);
                   const usdmSuffix = usdm != null ? ` (${usdm} USDm) ` : " ";
                   return [`${formatGdWei(payload.amountWei)} G$${usdmSuffix}`, "G$ claimed"];
                 }}

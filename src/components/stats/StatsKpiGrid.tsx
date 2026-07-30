@@ -1,6 +1,6 @@
 import type { GoClaimStats } from "@/lib/subgraph/types";
 import { formatGdWeiWhole } from "@/lib/formatGd";
-import { formatUsdmWhole } from "@/lib/formatUsdm";
+import { formatUsdmDisplay } from "@/lib/formatUsdm";
 import { GdUsdmHoverFigure } from "@/components/stats/GdUsdmHoverFigure";
 
 type KpiItem =
@@ -18,8 +18,8 @@ type KpiItem =
     };
 
 export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
-  const totalClaimedUsdm = formatUsdmWhole(stats.totalClaimedUsdm);
-  const claimedTodayUsdm = formatUsdmWhole(stats.claimedTodayUsdm);
+  const totalClaimedUsdm = formatUsdmDisplay(stats.totalClaimedUsdm);
+  const claimedTodayUsdm = formatUsdmDisplay(stats.claimedTodayUsdm);
 
   const items: KpiItem[] = [
     {

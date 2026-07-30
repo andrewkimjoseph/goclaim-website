@@ -1,6 +1,6 @@
-const usdmWholeFormatter = new Intl.NumberFormat("en-US", {
-  maximumFractionDigits: 0,
-  minimumFractionDigits: 0,
+const usdmDisplayFormatter = new Intl.NumberFormat("en-US", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
 });
 
 /** Convert token wei to a decimal string suitable for Celina `getReserveQuote`. */
@@ -27,10 +27,10 @@ export function weiToHumanAmount(wei: string, decimals = 18): string {
   return `${negative ? "-" : ""}${whole}.${fracStr}`;
 }
 
-/** Round a USDm quote string for compact KPI display. */
-export function formatUsdmWhole(amount: string | null | undefined): string | null {
+/** Format a USDm quote string for display (2 decimal places). */
+export function formatUsdmDisplay(amount: string | null | undefined): string | null {
   if (amount == null || amount === "") return null;
   const value = Number(amount);
   if (!Number.isFinite(value)) return null;
-  return usdmWholeFormatter.format(Math.round(value));
+  return usdmDisplayFormatter.format(value);
 }
