@@ -48,6 +48,8 @@ export type DailyVolumePoint = {
   day: string;
   amountWei: string;
   claimCount: number;
+  /** USDm equivalent of amountWei via GoodDollar reserve; null if quote failed. */
+  amountUsdm: string | null;
 };
 
 export type DailyGrowthPoint = {
