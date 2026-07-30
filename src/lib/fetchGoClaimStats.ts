@@ -1,4 +1,5 @@
 import { sumWei } from "./formatGd";
+import { quoteGdWeiToUsdm } from "./quoteGdToUsdm";
 import {
   buildCumulativeAdoptionSeries,
   buildDailyGrowthSeries,
@@ -74,15 +75,30 @@ export async function fetchGoClaimStats(): Promise<GoClaimStats> {
     ...ubiRows,
     ...transferRows,
   ]).length;
+  const totalClaimedWei = sumWei(dedupedClaims.map((row) => row.amount));
+
+  let totalClaimedUsdm: string | null = null;
+  let claimedTodayUsdm: string | null = null;
+  try {
+    const [totalQuote, todayQuote] = await quoteGdWeiToUsdm({
+      data: { amountsWei: [totalClaimedWei, claimedTodayWei] },
+    });
+    totalClaimedUsdm = totalQuote ?? null;
+    claimedTodayUsdm = todayQuote ?? null;
+  } catch (error) {
+    console.error("Failed to quote G$→USDm for GoClaim stats", error);
+  }
 
   return {
     accountsCreated,
     accountsConnected,
     linkRatePercent,
-    totalClaimedWei: sumWei(dedupedClaims.map((row) => row.amount)),
+    totalClaimedWei,
+    totalClaimedUsdm,
     successfulClaims: dedupedClaims.length,
     claimsToday,
     claimedTodayWei,
+    claimedTodayUsdm,
     totalTransactions,
     adoptionSeries: buildCumulativeAdoptionSeries(created, connected),
     dailyVolume: buildDailyVolumeSeries(dedupedClaims),
