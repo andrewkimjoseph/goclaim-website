@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useIsRestoring } from "@tanstack/react-query";
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, TriangleAlert } from "lucide-react";
+import type { ReactNode } from "react";
 import { Shell } from "@/components/Shell";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { useMinDuration } from "@/hooks/use-min-duration";
@@ -52,6 +53,30 @@ export const Route = createFileRoute("/stats")({
   component: StatsPage,
 });
 
+function StatsOverlay({
+  visible = true,
+  blur = false,
+  busy = false,
+  children,
+}: {
+  visible?: boolean;
+  blur?: boolean;
+  busy?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div
+      className={`pointer-events-none fixed inset-0 z-50 flex items-center justify-center px-4 transition-opacity duration-300 ease-out ${
+        blur ? "backdrop-blur-sm" : ""
+      } ${visible ? "opacity-100" : "opacity-0"}`}
+      aria-hidden={!visible}
+      aria-busy={busy || undefined}
+    >
+      {children}
+    </div>
+  );
+}
+
 function StatsLoadingOverlay({
   label,
   visible = true,
@@ -60,15 +85,9 @@ function StatsLoadingOverlay({
   visible?: boolean;
 }) {
   return (
-    <div
-      className={`pointer-events-none fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ease-out ${
-        visible ? "opacity-100" : "opacity-0"
-      }`}
-      aria-hidden={!visible}
-      aria-busy={visible}
-    >
+    <StatsOverlay visible={visible} busy={visible}>
       <LoadingSpinner label={label} />
-    </div>
+    </StatsOverlay>
   );
 }
 
@@ -82,6 +101,8 @@ function StatsPage() {
   const isInitialLoad = !data && (isRestoring || isLoading);
   const isRefreshing = isFetching && Boolean(data);
   const showRefreshing = useMinDuration(isRefreshing, 500);
+  const showErrorOverlay = isError && !data;
+  const showInlineRefreshError = isError && Boolean(data);
 
   return (
     <Shell nav="inner">
@@ -116,23 +137,42 @@ function StatsPage() {
         <p className="mt-3 text-sm text-white/60 font-sans">
           {formatStatsSinceNote(data?.statsSinceDay ?? null)}
         </p>
+        {showInlineRefreshError ? (
+          <p
+            role="status"
+            className="mt-3 flex items-center gap-2 text-sm font-sans text-white/70"
+          >
+            <TriangleAlert className="size-3.5 shrink-0" aria-hidden />
+            Couldn&apos;t refresh. Showing the last saved snapshot.
+          </p>
+        ) : null}
       </header>
 
       {isInitialLoad ? <StatsLoadingOverlay label="Loading..." /> : null}
 
-      {isError ? (
-        <div className="card space-y-3">
-          <p className="text-sm font-sans text-black/85">
-            Could not load stats{error instanceof Error ? `: ${error.message}` : "."}
-          </p>
-          <button
-            type="button"
-            onClick={() => void refetch()}
-            className="btn-hero-primary max-w-xs"
+      {showErrorOverlay ? (
+        <StatsOverlay blur>
+          <div
+            role="alert"
+            className="pointer-events-auto flex max-w-sm flex-col items-center gap-4 text-center animate-in fade-in-0 duration-300"
           >
-            Try again
-          </button>
-        </div>
+            <div className="space-y-2">
+              <h2 className="font-display text-xl font-bold text-white">Could not load stats</h2>
+              {error instanceof Error ? (
+                <p className="text-sm font-sans text-white/60">{error.message}</p>
+              ) : null}
+            </div>
+            <div className="w-full max-w-[220px]">
+              <button
+                type="button"
+                onClick={() => void refetch()}
+                className="btn-hero-primary"
+              >
+                Try again
+              </button>
+            </div>
+          </div>
+        </StatsOverlay>
       ) : null}
 
       {data ? (
