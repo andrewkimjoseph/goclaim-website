@@ -19,7 +19,8 @@ export function GdUsdmHoverFigure({
 
   return (
     <span
-      className={cn("inline-flex items-baseline whitespace-nowrap", className)}
+      className={cn("inline-flex cursor-default items-baseline whitespace-nowrap", className)}
+      onMouseEnter={() => setShowUsdm(true)}
       onMouseLeave={() => setShowUsdm(false)}
       onClick={toggle}
       role="button"
@@ -33,9 +34,8 @@ export function GdUsdmHoverFigure({
       }}
     >
       <span
-        onMouseEnter={() => setShowUsdm(true)}
         className={cn(
-          "cursor-default underline decoration-dotted underline-offset-2",
+          "underline decoration-dotted underline-offset-2",
           currencyClassName,
         )}
       >
