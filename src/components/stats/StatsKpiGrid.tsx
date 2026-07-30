@@ -1,39 +1,59 @@
 import type { GoClaimStats } from "@/lib/subgraph/types";
 import { formatGdWeiWhole } from "@/lib/formatGd";
 import { formatUsdmWhole } from "@/lib/formatUsdm";
+import { GdUsdmHoverFigure } from "@/components/stats/GdUsdmHoverFigure";
 
-type KpiItem = {
-  label: string;
-  value: string;
-  usdm?: string | null;
-};
+type KpiItem =
+  | {
+      label: string;
+      kind: "text";
+      value: string;
+    }
+  | {
+      label: string;
+      kind: "gd-usdm";
+      gdAmount: string;
+      usdmAmount: string | null;
+      fallbackValue: string;
+    };
 
 export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
+  const totalClaimedUsdm = formatUsdmWhole(stats.totalClaimedUsdm);
+  const claimedTodayUsdm = formatUsdmWhole(stats.claimedTodayUsdm);
+
   const items: KpiItem[] = [
     {
       label: "Accounts",
+      kind: "text",
       value: stats.accountsCreated.toLocaleString("en-US"),
     },
     {
-      label: "G$ total claimed",
-      value: formatGdWeiWhole(stats.totalClaimedWei),
-      usdm: formatUsdmWhole(stats.totalClaimedUsdm),
+      label: "Total claimed",
+      kind: "gd-usdm",
+      gdAmount: formatGdWeiWhole(stats.totalClaimedWei),
+      usdmAmount: totalClaimedUsdm,
+      fallbackValue: formatGdWeiWhole(stats.totalClaimedWei),
     },
     {
       label: "Total claims",
+      kind: "text",
       value: stats.successfulClaims.toLocaleString("en-US"),
     },
     {
       label: "Claims today",
+      kind: "text",
       value: (stats.claimsToday ?? 0).toLocaleString("en-US"),
     },
     {
-      label: "G$ claimed today",
-      value: formatGdWeiWhole(stats.claimedTodayWei ?? "0"),
-      usdm: formatUsdmWhole(stats.claimedTodayUsdm),
+      label: "Claimed today",
+      kind: "gd-usdm",
+      gdAmount: formatGdWeiWhole(stats.claimedTodayWei ?? "0"),
+      usdmAmount: claimedTodayUsdm,
+      fallbackValue: formatGdWeiWhole(stats.claimedTodayWei ?? "0"),
     },
     {
       label: "Total txns",
+      kind: "text",
       value: stats.totalTransactions.toLocaleString("en-US"),
     },
   ];
@@ -46,12 +66,17 @@ export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
             {item.label}
           </p>
           <p className="mt-1 font-display text-base font-extrabold leading-none sm:mt-2 sm:text-lg">
-            {item.value}
-            {item.usdm != null ? (
-              <sup className="relative -top-0.5 ml-0.5 font-sans text-[0.45em] font-normal leading-none text-black/45">
-                / {item.usdm} USDm
-              </sup>
-            ) : null}
+            {item.kind === "gd-usdm" && item.usdmAmount != null ? (
+              <GdUsdmHoverFigure
+                gdAmount={item.gdAmount}
+                usdmAmount={item.usdmAmount}
+                currencyClassName="decoration-black/25"
+              />
+            ) : item.kind === "gd-usdm" ? (
+              item.fallbackValue
+            ) : (
+              item.value
+            )}
           </p>
         </article>
       ))}
