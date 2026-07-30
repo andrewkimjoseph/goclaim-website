@@ -31,6 +31,8 @@ bun install
 bun dev
 ```
 
+For USDm labels on `/stats`, the marketing site calls the GoClaim app at `https://app.goclaim.xyz/api/g-usdm-quote` by default. For local dev against a running app, set `VITE_GD_QUOTE_API_URL=http://localhost:3000/api/g-usdm-quote` in `.env.local`.
+
 ## Structure
 
 ```text

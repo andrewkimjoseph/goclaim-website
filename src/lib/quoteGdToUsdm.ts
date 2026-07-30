@@ -1,42 +1,76 @@
-import { createServerFn } from "@tanstack/react-start";
-import { weiToHumanAmount } from "@/lib/formatUsdm";
+import { APP_URL } from "@/lib/copy";
 
-function resolveRpcUrl(): string {
-  return process.env.CELO_RPC_URL || process.env.VITE_CELO_RPC_URL || "https://forno.celo.org";
+/** Matches goclaim-app /api/g-usdm-quote MAX_AMOUNTS. */
+const QUOTE_CHUNK_SIZE = 64;
+
+const DEFAULT_QUOTE_API_URL = `${APP_URL}/api/g-usdm-quote`;
+
+function resolveQuoteApiUrl(): string {
+  return import.meta.env.VITE_GD_QUOTE_API_URL?.trim() || DEFAULT_QUOTE_API_URL;
+}
+
+function isZeroWei(wei: string): boolean {
+  try {
+    return BigInt(wei || "0") === 0n;
+  } catch {
+    return true;
+  }
+}
+
+async function quoteGdWeiToUsdmChunk(amountsWei: string[]): Promise<(string | null)[]> {
+  const apiUrl = resolveQuoteApiUrl();
+
+  const response = await fetch(apiUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amountsWei }),
+  });
+  if (!response.ok) {
+    console.error("G$→USDm quote API returned", response.status);
+    return amountsWei.map(() => null);
+  }
+
+  const payload = (await response.json()) as { quotes?: (string | null)[] };
+  if (!Array.isArray(payload.quotes) || payload.quotes.length !== amountsWei.length) {
+    return amountsWei.map(() => null);
+  }
+  return payload.quotes;
 }
 
 /**
- * Quote G$ wei amounts to USDm via the GoodDollar reserve (server-only).
- * Returns one nullable USDm string per input; failures are non-fatal.
+ * Calls the GoClaim app quote API for G$ wei amounts to USDm.
+ * Defaults to https://app.goclaim.xyz/api/g-usdm-quote; override with VITE_GD_QUOTE_API_URL for local dev.
  */
-export const quoteGdWeiToUsdm = createServerFn({ method: "POST" })
-  .validator((data: { amountsWei: string[] }) => {
-    if (!data || !Array.isArray(data.amountsWei)) {
-      throw new Error("amountsWei must be an array of wei strings");
-    }
-    return {
-      amountsWei: data.amountsWei.map((value) => String(value ?? "0")),
-    };
-  })
-  .handler(async ({ data }): Promise<(string | null)[]> => {
-    const { createCelinaClient } = await import("@andrewkimjoseph/celina-sdk");
-    const celina = createCelinaClient({
-      rpcUrl: resolveRpcUrl(),
-      analyticsEnabled: false,
-      attributionTags: ["goclaim"],
-    });
+export async function quoteGdWeiToUsdm(amountsWei: string[]): Promise<(string | null)[]> {
+  const results: (string | null)[] = new Array(amountsWei.length).fill(null);
+  const quoteIndices: number[] = [];
+  const quoteAmounts: string[] = [];
 
-    return Promise.all(
-      data.amountsWei.map(async (wei) => {
-        try {
-          const amount = weiToHumanAmount(wei);
-          if (amount === "0") return "0";
-          const quote = await celina.gooddollar.getReserveQuote("GoodDollar", "USDm", amount);
-          return quote.expectedOut;
-        } catch (error) {
-          console.error("G$→USDm reserve quote failed", error);
-          return null;
-        }
-      }),
-    );
-  });
+  for (let index = 0; index < amountsWei.length; index += 1) {
+    const wei = String(amountsWei[index] ?? "0");
+    if (isZeroWei(wei)) {
+      results[index] = "0";
+      continue;
+    }
+    quoteIndices.push(index);
+    quoteAmounts.push(wei);
+  }
+
+  if (quoteAmounts.length === 0) {
+    return results;
+  }
+
+  try {
+    for (let offset = 0; offset < quoteAmounts.length; offset += QUOTE_CHUNK_SIZE) {
+      const chunk = quoteAmounts.slice(offset, offset + QUOTE_CHUNK_SIZE);
+      const chunkQuotes = await quoteGdWeiToUsdmChunk(chunk);
+      for (let chunkIndex = 0; chunkIndex < chunkQuotes.length; chunkIndex += 1) {
+        results[quoteIndices[offset + chunkIndex]!] = chunkQuotes[chunkIndex] ?? null;
+      }
+    }
+    return results;
+  } catch (error) {
+    console.error("Failed to call G$→USDm quote API", error);
+    return amountsWei.map(() => null);
+  }
+}

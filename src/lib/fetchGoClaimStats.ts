@@ -84,9 +84,7 @@ export async function fetchGoClaimStats(): Promise<GoClaimStats> {
   let dailyQuotes: (string | null)[] = dailyVolumeRaw.map(() => null);
 
   try {
-    const quotes = await quoteGdWeiToUsdm({
-      data: { amountsWei: [totalClaimedWei, claimedTodayWei, ...dailyWei] },
-    });
+    const quotes = await quoteGdWeiToUsdm([totalClaimedWei, claimedTodayWei, ...dailyWei]);
     totalClaimedUsdm = quotes[0] ?? null;
     claimedTodayUsdm = quotes[1] ?? null;
     dailyQuotes = quotes.slice(2);
