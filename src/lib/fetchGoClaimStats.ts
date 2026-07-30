@@ -76,18 +76,28 @@ export async function fetchGoClaimStats(): Promise<GoClaimStats> {
     ...transferRows,
   ]).length;
   const totalClaimedWei = sumWei(dedupedClaims.map((row) => row.amount));
+  const dailyVolumeRaw = buildDailyVolumeSeries(dedupedClaims);
+  const dailyWei = dailyVolumeRaw.map((point) => point.amountWei);
 
   let totalClaimedUsdm: string | null = null;
   let claimedTodayUsdm: string | null = null;
+  let dailyQuotes: (string | null)[] = dailyVolumeRaw.map(() => null);
+
   try {
-    const [totalQuote, todayQuote] = await quoteGdWeiToUsdm({
-      data: { amountsWei: [totalClaimedWei, claimedTodayWei] },
+    const quotes = await quoteGdWeiToUsdm({
+      data: { amountsWei: [totalClaimedWei, claimedTodayWei, ...dailyWei] },
     });
-    totalClaimedUsdm = totalQuote ?? null;
-    claimedTodayUsdm = todayQuote ?? null;
+    totalClaimedUsdm = quotes[0] ?? null;
+    claimedTodayUsdm = quotes[1] ?? null;
+    dailyQuotes = quotes.slice(2);
   } catch (error) {
     console.error("Failed to quote G$→USDm for GoClaim stats", error);
   }
+
+  const dailyVolume = dailyVolumeRaw.map((point, index) => ({
+    ...point,
+    amountUsdm: dailyQuotes[index] ?? null,
+  }));
 
   return {
     accountsCreated,
@@ -101,7 +111,7 @@ export async function fetchGoClaimStats(): Promise<GoClaimStats> {
     claimedTodayUsdm,
     totalTransactions,
     adoptionSeries: buildCumulativeAdoptionSeries(created, connected),
-    dailyVolume: buildDailyVolumeSeries(dedupedClaims),
+    dailyVolume,
     dailyGrowth: buildDailyGrowthSeries(created, connected),
     dailyTransactions: buildDailyTransactionsSeries(created, connected, ubiRows, transferRows),
     statsSinceDay: statsSinceDayFromEvents(created, connected, ubiRows, transferRows),
