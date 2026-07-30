@@ -66,9 +66,13 @@ export type GoClaimStats = {
   accountsConnected: number;
   linkRatePercent: number;
   totalClaimedWei: string;
+  /** USDm equivalent of totalClaimedWei via GoodDollar reserve; null if quote failed. */
+  totalClaimedUsdm: string | null;
   successfulClaims: number;
   claimsToday: number;
   claimedTodayWei: string;
+  /** USDm equivalent of claimedTodayWei via GoodDollar reserve; null if quote failed. */
+  claimedTodayUsdm: string | null;
   totalTransactions: number;
   adoptionSeries: CumulativeAdoptionPoint[];
   dailyVolume: DailyVolumePoint[];
