@@ -24,17 +24,6 @@ This site is **not** the dapp. It's a brutalist-styled 3-page marketing surface 
 - Vite 7
 - Tailwind CSS v4 (tokens in `src/styles.css`)
 
-## Deployment
-
-Hosted on **Vercel** at [goclaim.xyz](https://goclaim.xyz). Production builds use Nitro's `vercel` preset (`vite build`). Deploy with the Vercel CLI or by pushing to the connected GitHub repo:
-
-```bash
-npm run build
-npx vercel --prod
-```
-
-Set `VITE_GOCLAIM_SUBGRAPH_URL` in the Vercel project for `/stats`. USDm quotes call `https://app.goclaim.xyz/api/g-usdm-quote` by default (no extra env required).
-
 ## Develop
 
 ```bash
