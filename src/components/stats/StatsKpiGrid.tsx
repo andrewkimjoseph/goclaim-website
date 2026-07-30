@@ -42,18 +42,16 @@ export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
     <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-6">
       {items.map((item) => (
         <article key={item.label} className="card p-3 sm:p-4">
-          <div className="flex items-start justify-between gap-2">
-            <p className="text-[10px] font-sans uppercase leading-tight tracking-wide text-black/60 sm:text-xs">
-              {item.label}
-            </p>
-            {item.usdm != null ? (
-              <p className="shrink-0 text-[10px] font-sans leading-tight text-black/45 sm:text-xs">
-                / {item.usdm} USDm
-              </p>
-            ) : null}
-          </div>
+          <p className="text-[10px] font-sans uppercase leading-tight tracking-wide text-black/60 sm:text-xs">
+            {item.label}
+          </p>
           <p className="mt-1 font-display text-base font-extrabold leading-none sm:mt-2 sm:text-lg">
             {item.value}
+            {item.usdm != null ? (
+              <sup className="relative -top-0.5 ml-0.5 font-sans text-[0.45em] font-normal leading-none text-black/45">
+                / {item.usdm} USDm
+              </sup>
+            ) : null}
           </p>
         </article>
       ))}
