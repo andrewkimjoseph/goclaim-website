@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { Shell } from "@/components/Shell";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { useMinDuration } from "@/hooks/use-min-duration";
+import { useStatsRefreshCooldown } from "@/hooks/use-stats-refresh-cooldown";
 import { DailyClaimsChart } from "@/components/stats/DailyClaimsChart";
 import { DailyGrowthChart } from "@/components/stats/DailyGrowthChart";
 import { DailyTransactionsChart } from "@/components/stats/DailyTransactionsChart";
@@ -91,18 +92,50 @@ function StatsLoadingOverlay({
   );
 }
 
+function formatLastUpdated(iso: string | undefined): string {
+  if (!iso) return "";
+  const date = new Date(iso);
+  return date.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 function StatsPage() {
   const isRestoring = useIsRestoring();
-  const { data, isLoading, isError, error, refetch, isFetching } = useQuery({
+  const { canRefresh, formattedCountdown, recordRefresh } = useStatsRefreshCooldown();
+  const { data, isLoading, isError, error, refetch, isFetching, dataUpdatedAt } = useQuery({
     queryKey: ["goclaim-stats"],
     queryFn: fetchGoClaimStats,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
   });
+
+  const handleRefresh = async () => {
+    if (!canRefresh || isFetching) return;
+    const result = await refetch();
+    if (result.isSuccess) {
+      recordRefresh();
+    }
+  };
 
   const isInitialLoad = !data && (isRestoring || isLoading);
   const isRefreshing = isFetching && Boolean(data);
   const showRefreshing = useMinDuration(isRefreshing, 500);
   const showErrorOverlay = isError && !data;
   const showInlineRefreshError = isError && Boolean(data);
+  const lastUpdatedLabel = formatLastUpdated(new Date(dataUpdatedAt).toISOString());
+  const refreshDisabled = isFetching || !canRefresh;
+  const refreshLabel = isFetching
+    ? "Refreshing…"
+    : !canRefresh
+      ? `Refresh in ${formattedCountdown}`
+      : "Refresh";
 
   return (
     <Shell nav="inner">
@@ -113,13 +146,13 @@ function StatsPage() {
           </h1>
           <button
             type="button"
-            onClick={() => void refetch()}
-            disabled={isFetching}
-            aria-label="Refresh stats"
+            onClick={() => void handleRefresh()}
+            disabled={refreshDisabled}
+            aria-label={refreshLabel}
             className="section-label-inverse inline-flex shrink-0 items-center gap-1.5 px-3 py-1 text-xs disabled:opacity-60"
           >
             <RefreshCw className="size-3.5" aria-hidden />
-            <span>Refresh</span>
+            <span>{refreshLabel}</span>
           </button>
         </div>
         <p className="mt-2 text-sm text-white/80 font-sans">
@@ -137,6 +170,9 @@ function StatsPage() {
         <p className="mt-3 text-sm text-white/60 font-sans">
           {formatStatsSinceNote(data?.statsSinceDay ?? null)}
         </p>
+        {data ? (
+          <p className="mt-2 text-xs text-white/50 font-sans">Last updated: {lastUpdatedLabel}</p>
+        ) : null}
         {showInlineRefreshError ? (
           <p
             role="status"
