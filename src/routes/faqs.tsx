@@ -3,7 +3,10 @@ import { useState } from "react";
 import { Shell } from "@/components/Shell";
 import { Faq } from "@/components/Faq";
 import { AppLink } from "@/components/AppLink";
-import { FAQS } from "@/lib/copy";
+import { isAccountCreationEnabled } from "@/lib/accountCreation";
+import { getFaqs } from "@/lib/copy";
+
+const faqs = getFaqs(isAccountCreationEnabled());
 
 export const Route = createFileRoute("/faqs")({
   head: () => ({
@@ -21,7 +24,7 @@ export const Route = createFileRoute("/faqs")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: FAQS.map((f) => ({
+          mainEntity: faqs.map((f) => ({
             "@type": "Question",
             name: f.q,
             acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -47,7 +50,7 @@ function FaqsPage() {
         </header>
 
         <div className="grid gap-3 auto-rows-min items-start">
-          {FAQS.map((f, i) => (
+          {faqs.map((f, i) => (
             <Faq
               key={f.q}
               q={f.q}

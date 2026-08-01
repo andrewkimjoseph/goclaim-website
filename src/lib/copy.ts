@@ -3,7 +3,7 @@ export const OPEN_GOCLAIM_LABEL = "Open GoClaim";
 export const VIEW_STATS_LABEL = "View stats";
 export const READ_FAQS_LABEL = "Read FAQs";
 export const ACCOUNT_CREATION_PAUSED_NOTE =
-  "GoClaim is not registering new accounts at the moment.";
+  "GoClaim is not registering new accounts at the moment. Existing accounts are unaffected.";
 
 
 export const HERO_TAGLINE = "Your UBI, on autopilot.";
@@ -47,7 +47,9 @@ export const BUILT_WITH = [
   },
 ] as const;
 
-export const FAQS = [
+export type FaqEntry = { q: string; a: string };
+
+const BASE_FAQS: FaqEntry[] = [
   {
     q: "What is GoClaim?",
     a: "GoClaim claims your daily GoodDollar UBI and sends G$ to your wallet automatically.",
@@ -80,4 +82,30 @@ export const FAQS = [
     q: "Is sign-in free?",
     a: "Yes. Sign-in uses a free wallet message. You only pay gas for the one-time GoodDollar link.",
   },
-] as const;
+];
+
+const ACCOUNT_CREATION_FAQ_Q = "Can I create a new GoClaim account?";
+const SETUP_FAQ_Q = "How does setup work?";
+
+export function getFaqs(accountCreationEnabled: boolean): FaqEntry[] {
+  const accountCreationFaq: FaqEntry = {
+    q: ACCOUNT_CREATION_FAQ_Q,
+    a: accountCreationEnabled
+      ? "Yes. Connect your GoodDollar-verified root wallet on Celo, sign in, and complete the one-time setup."
+      : `${ACCOUNT_CREATION_PAUSED_NOTE} You can still sign in and finish setup if you already have a GoClaim account.`,
+  };
+
+  const faqs = BASE_FAQS.map((faq) => {
+    if (faq.q === SETUP_FAQ_Q && !accountCreationEnabled) {
+      return {
+        ...faq,
+        a: "If you already have a GoClaim account: connect your wallet, sign in, then link your GoClaim smart account to GoodDollar once. New account registration is paused at the moment.",
+      };
+    }
+    return faq;
+  });
+
+  const whoCanUseIndex = faqs.findIndex((faq) => faq.q === "Who can use it?");
+  faqs.splice(whoCanUseIndex + 1, 0, accountCreationFaq);
+  return faqs;
+}
