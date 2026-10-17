@@ -54,3 +54,7 @@ public/
 ```
 
 All primary CTAs link to `https://app.goclaim.xyz`.
+
+## License
+
+MIT — Copyright (c) 2026 CNV Labs KO XYZ.

@@ -1,7 +1,17 @@
 export function Footer() {
   return (
     <footer className="py-8 text-center text-xs text-white/50 font-sans">
-      GoClaim — built on Celo + GoodDollar
+      <p>GoClaim — built on Celo + GoodDollar</p>
+      <p className="mt-2">
+        <a
+          href="https://github.com/thecanvassing"
+          target="_blank"
+          rel="noreferrer"
+          className="underline hover:text-white"
+        >
+          CNV Labs KO XYZ
+        </a>
+      </p>
     </footer>
   );
 }
