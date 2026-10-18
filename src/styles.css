@@ -20,14 +20,20 @@
 }
 
 @utility app-shell {
+  box-sizing: border-box;
   max-width: 460px;
   margin-inline: auto;
   width: 100%;
+  min-width: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding-inline: 1rem;
   background-color: #085020;
+  & > * {
+    min-width: 0;
+    max-width: 100%;
+  }
   @media (min-width: 768px) {
     max-width: 42rem;
   }
@@ -38,6 +44,10 @@
 }
 
 @utility header-bar {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  align-self: stretch;
   padding-block: 1rem;
   display: flex;
   align-items: center;
@@ -434,6 +444,10 @@
 @layer base {
   * {
     border-color: var(--color-border);
+  }
+
+  html {
+    scrollbar-gutter: stable;
   }
 
   body {
