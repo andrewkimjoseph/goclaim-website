@@ -5,7 +5,7 @@ export function Shell({ nav, children }: { nav: HeaderNav; children: ReactNode }
   return (
     <div className="app-shell font-sans">
       <Header nav={nav} />
-      <main className="flex-1 py-8">{children}</main>
+      <main className="min-w-0 w-full flex-1 py-8">{children}</main>
     </div>
   );
 }
