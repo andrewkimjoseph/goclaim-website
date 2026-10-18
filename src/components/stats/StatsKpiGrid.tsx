@@ -65,7 +65,7 @@ export function StatsKpiGrid({ stats }: { stats: GoClaimStats }) {
           <p className="text-[10px] font-sans uppercase leading-tight tracking-wide text-black/60 sm:text-xs">
             {item.label}
           </p>
-          <p className="mt-1 font-display text-base font-extrabold leading-none sm:mt-2 sm:text-lg">
+          <p className="mt-1 font-display text-sm font-extrabold leading-none sm:mt-2">
             {item.kind === "gd-usdm" && item.usdmAmount != null ? (
               <GdUsdmHoverFigure
                 gdAmount={item.gdAmount}
