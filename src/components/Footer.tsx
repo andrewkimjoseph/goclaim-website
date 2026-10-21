@@ -4,7 +4,7 @@ export function Footer() {
       <p>GoClaim — built on Celo + GoodDollar</p>
       <p className="mt-2">
         <a
-          href="https://github.com/thecanvassing"
+          href="https://thecanvassing.xyz"
           target="_blank"
           rel="noreferrer"
           className="underline hover:text-white"
