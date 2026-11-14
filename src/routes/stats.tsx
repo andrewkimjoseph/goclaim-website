@@ -15,25 +15,6 @@ import { fetchGoClaimStats } from "@/lib/fetchGoClaimStats";
 
 const GOCLAIM_PROXY_ADDRESS = "0x3cf4b49daca649419df30ae1d2dc99f0cb518a50";
 
-function formatStatsSinceNote(statsSinceDay: string | null): string {
-  if (!statsSinceDay) {
-    return "The contract was deployed today. Stats reflect on-chain activity since deployment.";
-  }
-
-  const todayKey = new Date().toISOString().slice(0, 10);
-  const launchDate = new Date(`${statsSinceDay}T00:00:00.000Z`);
-  const launchLabel =
-    statsSinceDay === todayKey
-      ? "today"
-      : launchDate.toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        });
-
-  return `The contract was deployed ${launchLabel}. Stats reflect on-chain activity since deployment.`;
-}
-
 export const Route = createFileRoute("/stats")({
   head: () => ({
     meta: [
@@ -166,9 +147,6 @@ function StatsPage() {
             contract
           </a>{" "}
           on Celo.
-        </p>
-        <p className="mt-3 text-sm text-white/60 font-sans">
-          {formatStatsSinceNote(data?.statsSinceDay ?? null)}
         </p>
         {data ? (
           <p className="mt-2 text-xs text-white/50 font-sans">Last updated: {lastUpdatedLabel}</p>
