@@ -23,25 +23,9 @@ import type {
   AccountCreatedRow,
   GoClaimStats,
   SubgraphMeta,
-  TimestampedEvent,
   TokenTransferredRow,
   UbiClaimedRow,
 } from "./subgraph/types";
-
-function statsSinceDayFromEvents(...eventLists: TimestampedEvent[][]): string | null {
-  let earliestTimestamp: number | null = null;
-
-  for (const events of eventLists) {
-    for (const event of events) {
-      const timestamp = Number(event.timestamp_);
-      if (earliestTimestamp === null || timestamp < earliestTimestamp) {
-        earliestTimestamp = timestamp;
-      }
-    }
-  }
-
-  return earliestTimestamp === null ? null : utcDayKey(String(earliestTimestamp));
-}
 
 export async function fetchGoClaimStats(): Promise<GoClaimStats> {
   const [metaResult, created, connected, ubiRows, transferRows] = await Promise.all([
@@ -112,7 +96,6 @@ export async function fetchGoClaimStats(): Promise<GoClaimStats> {
     dailyVolume,
     dailyGrowth: buildDailyGrowthSeries(created, connected),
     dailyTransactions: buildDailyTransactionsSeries(created, connected, ubiRows, transferRows),
-    statsSinceDay: statsSinceDayFromEvents(created, connected, ubiRows, transferRows),
     meta: metaResult._meta,
   };
 }

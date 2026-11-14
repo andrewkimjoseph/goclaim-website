@@ -80,6 +80,5 @@ export type GoClaimStats = {
   dailyVolume: DailyVolumePoint[];
   dailyGrowth: DailyGrowthPoint[];
   dailyTransactions: DailyTransactionsPoint[];
-  statsSinceDay: string | null;
   meta: SubgraphMeta;
 };
